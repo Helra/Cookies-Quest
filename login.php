@@ -1,4 +1,35 @@
-<?php require 'inc/head.php'; ?>
+<?php require 'inc/head.php';
+
+if (isset($_SESSION['name'])){
+    header('Location: index.php');
+} else {
+
+}
+
+
+$errors = [];
+
+function cleanData($unwatchUserData) {
+    $data = trim($unwatchUserData);
+    return $data;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (empty(cleanData($_POST['loginname']))) {
+        $errors[0] = 'Empty Name';
+    } else {
+        $name = htmlentities(cleanData($_POST['loginname']));
+    }
+
+    if (isset($name)){
+        session_start();
+        $_SESSION['name'] = $name;
+      header('Location: index.php');
+    }
+
+}
+
+?>
 <div class="container" style="margin-top:40px">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -29,6 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+                                        <span><?php if(isset($errors[0])) { echo $errors[0];};?></span>
                                     </div>
                                 </div>
                             </div>

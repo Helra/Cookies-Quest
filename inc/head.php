@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +49,10 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+        <a href="/sessionStart.php" class="btn btn-warning navbar-btn">
+            Deconnexion
+        </a>
+        <strong>Hello <?php echo $_SESSION['name'] ; ?></strong>
     </div>
 </header>
+

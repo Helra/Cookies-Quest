@@ -1,5 +1,25 @@
-<?php require 'inc/data/products.php'; ?>
+<?php session_start();
+require 'inc/data/products.php'; ?>
 <?php require 'inc/head.php'; ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $whatCookies = $_GET['add_to_cart'];
+    if ($whatCookies == 46) {
+        setcookie("peanutPecan", "Pecan nuts");
+    };
+    if ($whatCookies == 36) {
+        setcookie("chocolateChips", "Chocolate chips");
+    };
+    if ($whatCookies == 58) {
+        setcookie("fullChocolate", "Full chocolate cookie");
+    };
+    if ($whatCookies == 32) {
+        setcookie("mnms", "M&M's&copy; cookies");
+    };
+}
+
+
+?>
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>
